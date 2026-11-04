@@ -1,5 +1,6 @@
 # 3110-Group-Project
-Our group's public repository for the 3110 group project
+Team Project 65; "Shiver Me Functors"
 
 # Names
 Weston Clark - wrc65
+Ryan Breen - rmb382
