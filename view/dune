@@ -1,0 +1,3 @@
+(library
+ (name smf_view)
+ (libraries smf_core))
