@@ -85,6 +85,26 @@ let raycaster_tests =
            let h = cast_from 1.5 3.5 0. in
            assert_equal ~printer:wall_str Level.Wood h.wall;
            assert_equal ~cmp:close ~printer:str_f 1.5 h.distance );
+         ( "flat wall: equal perpendicular distance in every column" >:: fun _ ->
+           (* The player faces east at a flat wall 2.5 away (the line x = 4).
+              Edge rays travel farther in a straight line, but after the
+              fisheye correction every column should report 2.5. The room is
+              tall enough that even the edge rays of a 60 degree view reach
+              the east wall, not the top or bottom walls. *)
+           let lvl =
+             level_of
+               [ "#####"; "#...#"; "#...#"; "#>..#"; "#...#"; "#...#"; "#####" ]
+           in
+           let player = Player.make ~pos:{ Vec.x = 1.5; y = 3.5 } ~angle:0. in
+           let hits =
+             Raycaster.cast_screen lvl player ~fov:(pi /. 3.) ~columns:64
+           in
+           assert_equal ~printer:str_i 64 (Array.length hits);
+           Array.iter
+             (fun (h : Raycaster.hit) ->
+               assert_equal ~cmp:close ~printer:str_f 2.5 h.distance;
+               assert_equal ~printer:side_str Raycaster.Vertical h.side)
+             hits );
        ]
 
 (* ---------- Renderer ---------- *)
