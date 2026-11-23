@@ -1,5 +1,5 @@
 (tests
- (names test_smf test_level test_player)
- (libraries smf_core ounit2)
+ (names test_smf test_level test_player test_game)
+ (libraries smf_core smf_view ounit2)
  (deps
   (source_tree ../levels)))
