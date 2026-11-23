@@ -1,0 +1,3 @@
+(executable
+ (name main)
+ (libraries smf_core smf_view))
