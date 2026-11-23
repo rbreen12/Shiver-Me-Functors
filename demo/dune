@@ -1,0 +1,3 @@
+(executable
+ (name fps_demo)
+ (libraries raylib ctypes))
