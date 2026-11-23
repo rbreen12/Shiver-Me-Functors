@@ -1,3 +1,5 @@
-(test
- (name test_smf)
- (libraries smf_core ounit2))
+(tests
+ (names test_smf test_level)
+ (libraries smf_core ounit2)
+ (deps
+  (source_tree ../levels)))
