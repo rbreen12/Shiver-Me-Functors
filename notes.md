@@ -1,5 +1,29 @@
 # Design notes
 
+## How to run
+
+Install the dependencies once (needs OCaml and opam):
+
+```sh
+opam install dune ounit2 raylib
+```
+
+Run these from the repo root. The game loads `levels/level1.txt` by a relative
+path, so it has to be started from there.
+
+| Command                                  | What it does                          |
+| ---------------------------------------- | ------------------------------------- |
+| `dune build`                             | build everything                      |
+| `dune exec bin/main.exe`                 | run the game                          |
+| `dune test`                              | run the OUnit tests                   |
+| `dune exec demo/fps_demo.exe`            | open the FPS test window              |
+| `dune exec demo/fps_demo.exe -- --bench 4` | benchmark both draw modes for 4 s each |
+
+`Window` is still a stub (every function is `failwith "TODO"`), so
+`bin/main.exe` builds but stops with a `TODO` failure as soon as it starts.
+It will run once `Window` is implemented on top of raylib. Until then the demo
+is the only thing that opens a window.
+
 ## Proposed: initial interfaces (pending team agreement)
 
 - `Level` instead of `Map`, because a local `Map` module would shadow
@@ -39,5 +63,5 @@ Exits, enemies, and pickups are left out until after the first playable version.
 | Machine                          | Strips fps | Upload fps |
 | -------------------------------- | ---------- | ---------- |
 | Parth (i7-1255U, Iris Xe, Linux) | 1678       | 778        |
-| Ryan                             |            |            |
-| Weston                           |            |            |
+| Ryan  (Mac M3 Pro)               | 3954       | 1579       |
+| Weston  (i7, 8 Core, Windows)    | 501        | 764        |
